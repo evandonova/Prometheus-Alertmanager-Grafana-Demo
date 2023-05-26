@@ -3,12 +3,21 @@ const client = require('prom-client');
 // Create a Registry to register the metrics
 const register = new client.Registry();
 
+// Collect default metrics
+client.collectDefaultMetrics({
+  app: 'node-application-monitoring-app',
+  prefix: 'node_',
+  timeout: 10000,
+  gcDurationBuckets: [0.001, 0.01, 0.1, 1, 2, 5],
+  register
+});
+
 // Create a custom histogram metric
 const httpRequestTimer = new client.Histogram({
   name: 'http_request_duration_seconds',
   help: 'Duration of HTTP requests in seconds',
   labelNames: ['method', 'route', 'code'],
-  buckets: [0.1, 0.3, 0.5, 0.7, 1, 3, 5, 7, 10] // 0.1 to 10 seconds
+  buckets: [0.01, 0.03, 0.05, 0.07, 0.1, 0.3, 0.5, 0.7, 1] // 0.1 to 10 seconds
 });
 
 // Register the histogram

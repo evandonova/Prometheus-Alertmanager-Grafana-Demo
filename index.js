@@ -21,7 +21,7 @@ if (!port) port = process.env['PORT'];
 if (!port) port = 8080;
 
 app.listen(port, () => {
-  console.log(`App started. Listening at http://localhost:${port}`);
+  console.log(`App started. Listening at http://localhost:${port}. Metrics available at http://localhost:${port}/metrics`);
 })
 .on('error', function(err) {
   if (err.errno === 'EADDRINUSE')
