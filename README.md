@@ -1,5 +1,5 @@
 # Demo with Prometheus, Alertmanager and Grafana
-**Prometheus** + **Alertmanager** + **Grafana** configurations for the "Contact Book" app, modified to export metrics.
+**Prometheus** + **Alertmanager** + **Grafana** configurations for the "**Contact Book**" app, modified to **export metrics**.
 
 ## The "Contact Book" App
 **Original** used JS app here: https://github.com/nakov/ContactBook:
@@ -70,14 +70,34 @@ To do this, you should:
   .\prometheus --config.file .\prometheus-contact-book-alerts.yaml 
   ```
   9) **Access any app page** for **several** (at least 3) **times** in a **5-minute time period**. Prometheus will **scrape metrics occasionally** and if the value of the `http_request_duration_seconds_count` **metric has changed more than 3 times**, it will **fire an alert**. You can see the alert on the "**Alerts**" **page**:
-  **screenshots**
+  <kbd>
+  <img src="https://github.com/evandonova/Prometheus-Alertmanager-Grafana-Demo/assets/69080997/371cc4fb-6d37-472e-823b-d502a5ac2ed6" width="600" height="400" />
+  </kbd>
+  <br><br/>
+  
   10) **Alert** will be send to **Alertmanager**:
+  <kbd>
+  <img src="https://github.com/evandonova/Prometheus-Alertmanager-Grafana-Demo/assets/69080997/834b91a2-2d2e-4bc1-b1b6-9d367118080e" width="600" height="400" />
+  </kbd>
   <br><br/>
-  **screenshots**
+  
   11) **Alertmanager** will **send the alert** to the **Webhook.site URL** you provided after a while:
-  <br><br/>
-  **screenshots**
+  <kbd>
+  <img src="https://github.com/evandonova/Prometheus-Alertmanager-Grafana-Demo/assets/69080997/7762e758-05aa-4c6f-9c31-7f78778129fa" width="600" height="380" />
+  </kbd>
     
 ## Run Grafana to Visualize App Data
-**TODO**
-    
+Use **Grafana** to **visualize metric data from Prometheus** in the form of histograms, time series, charts, tables, etc.
+In this demo, we have **manually created histograms** for visualizing the `http_request_duration_seconds_bucket` **metric** for the **separate endpoints** that our app has:
+
+<kbd>
+<img src="https://github.com/evandonova/Prometheus-Alertmanager-Grafana-Demo/assets/69080997/c5ea1f7c-3cde-4c36-8e03-93af384c70ab" width="600" height="350" />
+</kbd>
+<br><br/>
+
+You can **install Grafana** and **create a dashboard** you like.
+
+You can also **import this sample Grafana dashboard**: go to [Dashboards] 🠲 [New] 🠲 [Import] and use the [grafana-sample-dashboard.json](https://github.com/evandonova/Prometheus-Alertmanager-Grafana-Demo/blob/main/configs/grafana-sample-dashboard.json) file.
+
+Note that you should have created a **Prometheus data source** for Grafana to obtain the metric data from.
+
